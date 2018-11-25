@@ -4,6 +4,12 @@
 
 #include "genetic_algorithm.hpp"
 
+/*
+ * genetic_algorithm constructor
+ * runs the genetic algorithm to minimize the distance travelled for the travelling
+ * salesman problem.
+ * @returns genetic_algorithm : newly created genetic_algorithm
+ */
 genetic_algorithm::genetic_algorithm() {
     tour master_list;
     vector<tour> population{POPULATION_SIZE};
@@ -67,6 +73,12 @@ genetic_algorithm::genetic_algorithm() {
     cout << "Shortest distance: " << SCALER / population[best_tour_index].fitness;
 }
 
+/*
+ * mutates random tours. Calculates a random mutation value for each city and if
+ * it is less than the MUTATION_RATE, the city is swapped with a random city.
+ * @params vector<tour> &p : list of tours to be mutated
+ * @returns void
+ */
 void genetic_algorithm::mutate(vector<tour> &p) {
     for (int i = 0 + NUMBER_OF_ELITES; i < POPULATION_SIZE; ++i) {
         for (int j = 0; j < CITIES_IN_TOUR; ++j) {
@@ -77,17 +89,34 @@ void genetic_algorithm::mutate(vector<tour> &p) {
     }
 }
 
+/*
+ * swaps two cities in a tour.
+ * @params int first : index of the first city
+ *         int second : index of the second city
+ *         vector<city> &cities : list of cities to be swapped
+ * @returns void
+ */
 void genetic_algorithm::swap_cities(int first, int second, vector<city> &cities) {
     city temp = cities[first];
     cities[first] = cities[second];
     cities[second] = temp;
 }
 
-
+/*
+ * shuffles the cities in a tour randomly
+ * @params tour &t : tour to be shuffled
+ * @returns void
+ */
 void genetic_algorithm::shuffle_cities(tour &t) {
     shuffle(begin(t.cities), end(t.cities), std::mt19937(std::random_device()()));
 }
 
+/*
+ * calculates the fitness of each tour in a population and finds the fittest tour.
+ * @params vector<tour> &p : population of tour to be calculated
+ *         int size : number of tours in the population p
+ * @returns index of the shortest tour
+ */
 int genetic_algorithm::determine_fitness(vector<tour> &p, int size) {
     int index_of_shortest_tour = 0;
     auto shortest_tour_in_population = (double) RAND_MAX;
@@ -104,6 +133,11 @@ int genetic_algorithm::determine_fitness(vector<tour> &p, int size) {
     return index_of_shortest_tour;
 }
 
+/*
+ * calculates the total distance travelled in a tour.
+ * @params tour &t : tour to be calculated
+ * @returns total distance travelled in a tour
+ */
 double genetic_algorithm::get_tour_distance(tour &t) {
     double distance = 0.0;
     for (int i = 0; i < CITIES_IN_TOUR; ++i)
@@ -111,6 +145,12 @@ double genetic_algorithm::get_tour_distance(tour &t) {
     return distance;
 }
 
+/*
+ * calculates the distance between two cities
+ * @params city first : first city (current city)
+ *         city second : second city (next city to be travelled)
+ * @returns double the distancce between the two cities
+ */
 double genetic_algorithm::get_distance_between_cities(city first, city second) {
     return sqrt(
             pow((double) (first.x - second.y), 2.0)
@@ -119,6 +159,11 @@ double genetic_algorithm::get_distance_between_cities(city first, city second) {
     );
 }
 
+/*
+ * selects parent tours which are the fittest of the population p, randomly selected.
+ * @params vector<tour> &p : population to be selected from
+ * @returns returns the fittest of the population (parents)
+ */
 vector<tour> genetic_algorithm::select_parents(vector<tour> &p) {
     int parent_index = 0;
     vector<tour> parents{NUMBER_OF_PARENTS};
@@ -135,6 +180,15 @@ vector<tour> genetic_algorithm::select_parents(vector<tour> &p) {
     return parents;
 }
 
+/*
+ * combines the parent tours by selecting a random index and filling in the cities
+ * from 0 to the random index. The rest of the cities after the random index is filled
+ * from the second parent.
+ * @params char name : name of the city
+ *         int x : x coordinate of the city
+ *         int y : y coordinate of the city
+ * @returns the mixed child
+ */
 tour genetic_algorithm::crossover(vector<tour> &parents) {
     tour child;
 
@@ -155,17 +209,29 @@ tour genetic_algorithm::crossover(vector<tour> &parents) {
     return child;
 }
 
-int genetic_algorithm::contains_city(tour &candidate_tour, int length, city &candidate_city) {
+/*
+ * determines if the candidate city is in the candidate tour.
+ * @params tour &candidate_tour : tour to be searched from
+ *         int length : length of the tour
+ *         city &candidate_city : city to be searched
+ * @returns true if the candidate_city is contained in the candidate tour, false otherwise.
+ */
+bool genetic_algorithm::contains_city(tour &candidate_tour, int length, city &candidate_city) {
     for (int i = 0; i < length; ++i) {
         if (candidate_tour.cities[i].name == candidate_city.name &&
             candidate_tour.cities[i].x == candidate_city.x &&
             candidate_tour.cities[i].y == candidate_city.y) {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
+/*
+ * prints the cities in a tour.
+ * @params vector<city> &cities : cities to be printed.
+ * @returns void
+ */
 void genetic_algorithm::print_cities(vector<city> &cities) {
     for (auto c : cities) cout << c.name << " ";
 }

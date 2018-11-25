@@ -49,7 +49,7 @@ class genetic_algorithm {
 
     tour crossover(vector<tour> &parents);
 
-    int contains_city(tour &candidate_tour, int length, city &candidate_city);
+    bool contains_city(tour &candidate_tour, int length, city &candidate_city);
 
     void mutate(vector<tour> &p);
 
