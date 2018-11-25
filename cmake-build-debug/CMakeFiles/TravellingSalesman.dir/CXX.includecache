@@ -1,0 +1,48 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/city.cpp
+city.hpp
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/city.hpp
+
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/city.hpp
+
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/genetic_algorithm.cpp
+genetic_algorithm.hpp
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/genetic_algorithm.hpp
+
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/genetic_algorithm.hpp
+random
+-
+iostream
+-
+iomanip
+-
+algorithm
+-
+city.hpp
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/city.hpp
+tour.hpp
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/tour.hpp
+
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/main.cpp
+iostream
+-
+genetic_algorithm.hpp
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/genetic_algorithm.hpp
+
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/tour.cpp
+tour.hpp
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/tour.hpp
+
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/tour.hpp
+vector
+-
+city.hpp
+/cygdrive/c/Users/Daniel Shin/Desktop/TravellingSalesman/city.hpp
+

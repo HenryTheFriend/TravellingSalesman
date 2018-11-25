@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/TravellingSalesman.dir/main.cpp.o CMakeFiles/TravellingSalesman.dir/city.cpp.o CMakeFiles/TravellingSalesman.dir/tour.cpp.o CMakeFiles/TravellingSalesman.dir/genetic_algorithm.cpp.o  -o TravellingSalesman.exe -Wl,--out-implib,libTravellingSalesman.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
